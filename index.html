@@ -1,200 +1,216 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>Kalkulator HPP & Harga Jual</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
-    p.desc {
-      text-align: center;
-      font-size: 13px;
-      color: #555;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-    .group-title {
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 14px;
-      border-left: 4px solid #2563eb;
-      padding-left: 8px;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-size: 13px;
-    }
-    input[type="number"] {
-      width: 100%;
-      padding: 8px 10px;
-      margin-top: 4px;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font-size: 14px;
-    }
-    input[type="number"]:focus {
-      outline: none;
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px #2563eb33;
-    }
-    .row {
-      display: flex;
-      gap: 10px;
-    }
-    .col {
-      flex: 1;
-    }
-    button {
-      margin-top: 18px;
-      width: 100%;
-      padding: 10px;
-      border-radius: 999px;
-      border: none;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #2563eb;
-      color: white;
-    }
-    button:hover {
-      background: #1d4ed8;
-    }
-    .result-box {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 12px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      font-size: 14px;
-    }
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 6px;
-    }
-    .result-label {
-      color: #374151;
-    }
-    .result-value {
-      font-weight: bold;
-    }
-    .note {
-      font-size: 11px;
-      color: #6b7280;
-      margin-top: 10px;
-    }
-    footer {
-      margin-top: 25px;
-      text-align: center;
-      font-size: 11px;
-      color: #9ca3af;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>FAISAL HPP | Kalkulator Makanan & Minuman</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --text: #111827;
+    --primary: #2563eb;
+  }
+  body.dark {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #e2e8f0;
+    --primary: #60a5fa;
+  }
+
+  body {
+    margin:0; padding:0;
+    font-family:"Poppins",sans-serif;
+    background:var(--bg);
+    transition:0.3s;
+  }
+
+  .container {
+    max-width:900px;
+    margin:35px auto;
+    background:var(--card);
+    padding:30px;
+    border-radius:18px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    transition:0.3s;
+  }
+
+  h1 {
+    text-align:center;
+    font-size:32px;
+    font-weight:700;
+    color:var(--text);
+  }
+
+  h2 {
+    color:var(--primary);
+    margin-top:20px;
+  }
+
+  label {display:block; margin-top:10px; font-size:14px; font-weight:600; color:var(--text);}
+  input {
+    width:100%;
+    padding:10px;
+    background:#e8ecf3;
+    border:none;
+    border-radius:10px;
+    margin-top:4px;
+    font-size:15px;
+  }
+
+  .row {display:flex; gap:12px;}
+  .col {flex:1;}
+
+  button {
+    width:100%; margin-top:20px; padding:14px;
+    background:var(--primary); color:white; border:none; border-radius:12px;
+    font-size:17px; font-weight:700;
+    cursor:pointer; transition:0.25s;
+  }
+  button:hover {transform:translateY(-2px); opacity:0.9;}
+
+  .mode {
+    text-align:center;
+    margin-bottom:15px;
+  }
+  .mode button {
+    width:auto; padding:8px 18px;
+    font-size:14px; border-radius:20px;
+    margin-bottom:10px;
+  }
+
+  .result {
+    display:none;
+    margin-top:20px;
+    padding:16px;
+    border-radius:13px;
+    background:#dbeafe;
+    border:1px solid #bfdbfe;
+    font-size:15px;
+  }
+
+  .flex {display:flex; justify-content:space-between; margin:6px 0; color:var(--text);}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Kalkulator HPP & Harga Jual</h1>
-    <p class="desc">Masukkan total biaya, jumlah produksi, dan margin. Semua angka dalam Rupiah.</p>
+<audio id="notifSound" src="https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3"></audio>
 
-    <div class="group-title">A. Biaya Produksi (Total)</div>
-    <label>Total Biaya Produksi
-      <input type="number" id="biayaProduksi" placeholder="contoh: 3500000" min="0" />
-    </label>
+<div class="container">
+  <h1>FAISAL HPP</h1>
 
-    <div class="group-title">B. Biaya Operasional (Total)</div>
-    <label>Total Biaya Operasional
-      <input type="number" id="biayaOperasional" placeholder="contoh: 1000000" min="0" />
-    </label>
-
-    <div class="row">
-      <div class="col">
-        <div class="group-title">C. Produksi</div>
-        <label>Jumlah Produk (pcs)
-          <input type="number" id="jumlahProduk" placeholder="contoh: 100" min="1" />
-        </label>
-      </div>
-      <div class="col">
-        <div class="group-title">D. Margin</div>
-        <label>Margin Laba (%)
-          <input type="number" id="margin" placeholder="contoh: 60" min="0" />
-        </label>
-      </div>
-    </div>
-
-    <button onclick="hitungHPP()">Hitung HPP & Harga Jual</button>
-
-    <div class="result-box" id="hasilBox" style="display:none;">
-      <div class="result-row">
-        <span class="result-label">Total HPP:</span>
-        <span class="result-value" id="totalHPP"></span>
-      </div>
-      <div class="result-row">
-        <span class="result-label">HPP per pcs:</span>
-        <span class="result-value" id="hppPerPcs"></span>
-      </div>
-      <div class="result-row">
-        <span class="result-label">Harga Jual per pcs:</span>
-        <span class="result-value" id="hargaJual"></span>
-      </div>
-      <p class="note">
-        Rumus: HPP = (Biaya Produksi + Biaya Operasional).  
-        HPP per pcs = Total HPP ÷ Jumlah Produk.  
-        Harga Jual = HPP per pcs + (HPP per pcs × Margin %).
-      </p>
-    </div>
-
-    <footer>
-      Made for UMKM • Bisa diedit sesuai kebutuhan biaya detail.
-    </footer>
+  <div class="mode">
+    <button onclick="toggleMode()">🌙 / ☀ Mode</button>
   </div>
 
-  <script>
-    function formatRupiah(angka) {
-      if (isNaN(angka)) return "-";
-      return "Rp " + angka.toLocaleString("id-ID");
-    }
+  <h2>HPP Makanan</h2>
 
-    function hitungHPP() {
-      const produksi = parseFloat(document.getElementById("biayaProduksi").value) || 0;
-      const operasional = parseFloat(document.getElementById("biayaOperasional").value) || 0;
-      const jumlah = parseFloat(document.getElementById("jumlahProduk").value);
-      const margin = parseFloat(document.getElementById("margin").value) || 0;
+  <label>Total Biaya Produksi Makanan
+    <input type="number" id="pMkn" placeholder="contoh: 931000">
+  </label>
+  <label>Total Operasional Makanan
+    <input type="number" id="oMkn" placeholder="contoh: 255000">
+  </label>
 
-      if (!jumlah || jumlah <= 0) {
-        alert("Jumlah produk tidak boleh kosong atau 0.");
-        return;
-      }
+  <div class="row">
+    <div class="col">
+      <label>Jumlah Porsi
+        <input type="number" id="pcsMkn" placeholder="contoh: 60">
+      </label>
+    </div>
+    <div class="col">
+      <label>Margin (%)
+        <input type="number" id="marginMkn" placeholder="misal 60">
+      </label>
+    </div>
+  </div>
 
-      const totalHPP = produksi + operasional;
-      const hppPerPcs = totalHPP / jumlah;
-      const hargaJual = hppPerPcs + (hppPerPcs * (margin / 100));
+  <button onclick="hitungMakan()">Hitung HPP Makanan</button>
 
-      document.getElementById("totalHPP").textContent = formatRupiah(totalHPP);
-      document.getElementById("hppPerPcs").textContent = formatRupiah(Math.round(hppPerPcs));
-      document.getElementById("hargaJual").textContent = formatRupiah(Math.round(hargaJual));
+  <div class="result" id="hasilMkn">
+    <div class="flex"><span>Total HPP</span><b id="totalMkn"></b></div>
+    <div class="flex"><span>HPP / porsi</span><b id="hppMkn"></b></div>
+    <div class="flex"><span>Harga jual</span><b id="jualMkn"></b></div>
+  </div>
 
-      document.getElementById("hasilBox").style.display = "block";
-    }
-  </script>
+  <h2>HPP Minuman</h2>
+
+  <label>Total Biaya Produksi Minuman
+    <input type="number" id="pMnm" placeholder="contoh: 420000">
+  </label>
+  <label>Total Operasional Minuman
+    <input type="number" id="oMnm" placeholder="contoh: 100000">
+  </label>
+
+  <div class="row">
+    <div class="col">
+      <label>Jumlah Cup
+        <input type="number" id="pcsMnm" placeholder="contoh: 40">
+      </label>
+    </div>
+    <div class="col">
+      <label>Margin (%)
+        <input type="number" id="marginMnm" placeholder="misal 70">
+      </label>
+    </div>
+  </div>
+
+  <button onclick="hitungMinum()">Hitung HPP Minuman</button>
+
+  <div class="result" id="hasilMnm">
+    <div class="flex"><span>Total HPP</span><b id="totalMnm"></b></div>
+    <div class="flex"><span>HPP / cup</span><b id="hppMnm"></b></div>
+    <div class="flex"><span>Harga jual</span><b id="jualMnm"></b></div>
+  </div>
+</div>
+
+<script>
+function f(x){ return "Rp " + x.toLocaleString("id-ID"); }
+
+function playSound(){
+  document.getElementById("notifSound").play();
+}
+
+function toggleMode(){
+  document.body.classList.toggle("dark");
+}
+
+function hitungMakan(){
+  const p = +document.getElementById("pMkn").value;
+  const o = +document.getElementById("oMkn").value;
+  const pcs = +document.getElementById("pcsMkn").value;
+  const m = +document.getElementById("marginMkn").value;
+
+  const total = p + o;
+  const hpp = total / pcs;
+  const jual = hpp + (hpp * m/100);
+
+  document.getElementById("totalMkn").innerHTML = f(total);
+  document.getElementById("hppMkn").innerHTML = f(Math.round(hpp));
+  document.getElementById("jualMkn").innerHTML = f(Math.round(jual));
+
+  document.getElementById("hasilMkn").style.display = "block";
+  playSound();
+}
+
+function hitungMinum(){
+  const p = +document.getElementById("pMnm").value;
+  const o = +document.getElementById("oMnm").value;
+  const pcs = +document.getElementById("pcsMnm").value;
+  const m = +document.getElementById("marginMnm").value;
+
+  const total = p + o;
+  const hpp = total / pcs;
+  const jual = hpp + (hpp * m/100);
+
+  document.getElementById("totalMnm").innerHTML = f(total);
+  document.getElementById("hppMnm").innerHTML = f(Math.round(hpp));
+  document.getElementById("jualMnm").innerHTML = f(Math.round(jual));
+
+  document.getElementById("hasilMnm").style.display = "block";
+  playSound();
+}
+</script>
 </body>
 </html>
