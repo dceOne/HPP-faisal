@@ -1,152 +1,200 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kalkulator HPP & Harga Jual</title>
-
-<style>
-  body {
-    margin: 0;
-    padding: 20px;
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
-  }
-
-  .card {
-    max-width: 750px;
-    margin: auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 10px 10px 30px #d7d7d7, -10px -10px 30px #ffffff;
-  }
-
-  h1 {
-    text-align: center;
-    font-size: 26px;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-
-  .desc {
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 20px;
-  }
-
-  .section-title {
-    margin-top: 20px;
-    font-size: 15px;
-    font-weight: 600;
-    padding-left: 10px;
-    border-left: 4px solid #2563eb;
-  }
-
-  label {
-    display: block;
-    font-size: 14px;
-    margin-top: 12px;
-  }
-
-  input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    border: none;
-    background: #f1f5f9;
-    border-radius: 12px;
-    font-size: 15px;
-    box-shadow: inset 4px 4px 8px #c9c9c9, inset -4px -4px 8px #ffffff;
-  }
-
-  input:focus {
-    outline: none;
-    box-shadow: inset 4px 4px 8px #b7b7b7, inset -4px -4px 8px #ffffff;
-  }
-
-  .row {
-    display: flex;
-    gap: 10px;
-  }
-
-  .col {
-    flex: 1;
-  }
-
-  button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 25px;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    background: linear-gradient(135deg,#2563eb,#1d4ed8);
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-  }
-
-  .result {
-    margin-top: 25px;
-    padding: 18px;
-    border-radius: 16px;
-    background: #f7f9fd;
-    border: 1px solid #e5e7eb;
-    font-size: 15px;
-  }
-
-  .r-row {
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 0;
-  }
-
-  footer {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 12px;
-    color: #888;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <title>Kalkulator HPP & Harga Jual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+    p.desc {
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .group-title {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 14px;
+      border-left: 4px solid #2563eb;
+      padding-left: 8px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 4px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb33;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+    .col {
+      flex: 1;
+    }
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 999px;
+      border: none;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #2563eb;
+      color: white;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .result-box {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      font-size: 14px;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+    .result-label {
+      color: #374151;
+    }
+    .result-value {
+      font-weight: bold;
+    }
+    .note {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+    footer {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+  </style>
 </head>
-
 <body>
-<div class="card">
-  <h1>Kalkulator HPP</h1>
-  <p class="desc">Hitung HPP & harga jual otomatis untuk UMKM</p>
+  <div class="container">
+    <h1>Kalkulator HPP & Harga Jual</h1>
+    <p class="desc">Masukkan total biaya, jumlah produksi, dan margin. Semua angka dalam Rupiah.</p>
 
-  <div class="section-title">A. Total Biaya Produksi</div>
-  <label>Total Biaya Produksi
-    <input type="number" id="produksi" placeholder="contoh: 3500000" />
-  </label>
+    <div class="group-title">A. Biaya Produksi (Total)</div>
+    <label>Total Biaya Produksi
+      <input type="number" id="biayaProduksi" placeholder="contoh: 3500000" min="0" />
+    </label>
 
-  <div class="section-title">B. Total Biaya Operasional</div>
-  <label>Total Biaya Operasional
-    <input type="number" id="operasional" placeholder="contoh: 1000000" />
-  </label>
+    <div class="group-title">B. Biaya Operasional (Total)</div>
+    <label>Total Biaya Operasional
+      <input type="number" id="biayaOperasional" placeholder="contoh: 1000000" min="0" />
+    </label>
 
-  <div class="row">
-    <div class="col">
-      <div class="section-title">Jumlah Produk</div>
-      <input type="number" id="jumlah" placeholder="pcs" />
+    <div class="row">
+      <div class="col">
+        <div class="group-title">C. Produksi</div>
+        <label>Jumlah Produk (pcs)
+          <input type="number" id="jumlahProduk" placeholder="contoh: 100" min="1" />
+        </label>
+      </div>
+      <div class="col">
+        <div class="group-title">D. Margin</div>
+        <label>Margin Laba (%)
+          <input type="number" id="margin" placeholder="contoh: 60" min="0" />
+        </label>
+      </div>
     </div>
-    <div class="col">
-      <div class="section-title">Margin Laba (%)</div>
-      <input type="number" id="margin" placeholder="misal 60" />
+
+    <button onclick="hitungHPP()">Hitung HPP & Harga Jual</button>
+
+    <div class="result-box" id="hasilBox" style="display:none;">
+      <div class="result-row">
+        <span class="result-label">Total HPP:</span>
+        <span class="result-value" id="totalHPP"></span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">HPP per pcs:</span>
+        <span class="result-value" id="hppPerPcs"></span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Harga Jual per pcs:</span>
+        <span class="result-value" id="hargaJual"></span>
+      </div>
+      <p class="note">
+        Rumus: HPP = (Biaya Produksi + Biaya Operasional).  
+        HPP per pcs = Total HPP ÷ Jumlah Produk.  
+        Harga Jual = HPP per pcs + (HPP per pcs × Margin %).
+      </p>
     </div>
+
+    <footer>
+      Made for UMKM • Bisa diedit sesuai kebutuhan biaya detail.
+    </footer>
   </div>
 
-  <button onclick="hitung()">Hitung HPP & Harga Jual</button>
+  <script>
+    function formatRupiah(angka) {
+      if (isNaN(angka)) return "-";
+      return "Rp " + angka.toLocaleString("id-ID");
+    }
 
-  <div id="resultBox" class="result" style="display:none;">
-    <div class="r-row"><span>Total HPP</span><strong id="totalHPP"></strong></div>
-    <div class="r-row"><span>HPP per pcs</span><strong id="hppPcs"></strong></div>
-    <div class="r-row"><span>Harga Jual per pcs</span><strong id="harga"></strong></div>
+    function hitungHPP() {
+      const produksi = parseFloat(document.getElementById("biayaProduksi").value) || 0;
+      const operasional = parseFloat(document.getElementById("biayaOperasional").value) || 0;
+      const jumlah = parseFloat(document.getElementById("jumlahProduk").value);
+      const margin = parseFloat(document.getElementById("margin").value) || 0;
+
+      if (!jumlah || jumlah <= 0) {
+        alert("Jumlah produk tidak boleh kosong atau 0.");
+        return;
+      }
+
+      const totalHPP = produksi + operasional;
+      const hppPerPcs = totalHPP / jumlah;
+      const hargaJual = hppPerPcs + (hppPerPcs * (margin / 100));
+
+      document.getElementById("totalHPP").textContent = formatRupiah(totalHPP);
+      document.getElementById("hppPerPcs").textContent = formatRupiah(Math.round(hppPerPcs));
+      document.getElementById("hargaJual").textContent = formatRupiah(Math.round(hargaJual));
+
+      document.getElementById("hasilBox").style.display = "block";
+    }
+  </script>
+</body>
+</html>
